@@ -2,7 +2,7 @@
 
 # Sample initial product list
 inventory = [
-    {"id": 1, "name": "iPhone 8 Plus Cover", "category": "Mobile Phone", "price": 1200, "quantity": 80},
+    {"id": 1, "name": "Watch", "category": "Watch", "price": 1400, "quantity": 180},
 ]
 
 # Admin credentials
