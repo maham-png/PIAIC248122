@@ -6,8 +6,8 @@ inventory = [
 ]
 
 # Admin credentials
-admin_username = "MahamFarooq"
-admin_password = "Maham1234!"
+admin_username = "MaryamShahBano"
+admin_password = "Baham1234!"
 
 # Function to authenticate admin
 def authenticate():
