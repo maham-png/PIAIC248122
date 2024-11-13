@@ -1,0 +1,109 @@
+# Inventory Management System
+
+# Sample initial product list
+inventory = [
+    {"id": 1, "name": "iPhone 8 Plus Cover", "category": "Mobile Phone", "price": 1200, "quantity": 80},
+]
+
+# Admin credentials
+admin_username = "MahamFarooq"
+admin_password = "Maham1234!"
+
+# Function to authenticate admin
+def authenticate():
+    print("Admin Login")
+    username = input("Username: ")
+    password = input("Password: ")
+    if username == admin_username and password == admin_password:
+        print("Login successful!\n")
+        return True
+    else:
+        print("Login failed. Please try again.\n")
+        return False
+
+# Function to add a product
+def add_product():
+    product_id = int(input("Enter Product ID: "))
+    name = input("Enter Product Name: ")
+    category = input("Enter Product Category: ")
+    price = float(input("Enter Product Price: "))
+    quantity = int(input("Enter Product Quantity: "))
+    inventory.append({"id": product_id, "name": name, "category": category, "price": price, "quantity": quantity})
+    print(f"Product '{name}' added successfully!\n")
+
+# Function to update a product
+def update_product():
+    product_id = int(input("Enter Product ID to update: "))
+    for product in inventory:
+        if product["id"] == product_id:
+            print(f"Current details: {product}")
+            product["name"] = input("Enter new Product Name: ")
+            product["category"] = input("Enter new Product Category: ")
+            product["price"] = float(input("Enter new Product Price: "))
+            product["quantity"] = int(input("Enter new Product Quantity: "))
+            print("Product updated successfully!\n")
+            return
+    print("Product not found.\n")
+
+# Function to delete a product
+def delete_product():
+    product_id = int(input("Enter Product ID to delete: "))
+    for product in inventory:
+        if product["id"] == product_id:
+            inventory.remove(product)
+            print("Product deleted successfully!\n")
+            return
+    print("Product not found.\n")
+
+# Function to display inventory
+def display_inventory():
+    if inventory:
+        print("\nCurrent Inventory:")
+        for product in inventory:
+            print(f"ID: {product['id']}, Name: {product['name']}, Category: {product['category']}, "
+                  f"Price: {product['price']}, Quantity: {product['quantity']}")
+        print()
+    else:
+        print("Inventory is empty.\n")
+
+# Function to check low stock
+def low_stock_alert(threshold=10):
+    print("\nLow Stock Products:")
+    low_stock_items = [product for product in inventory if product['quantity'] < threshold]
+    if low_stock_items:
+        for product in low_stock_items:
+            print(f"ID: {product['id']}, Name: {product['name']}, Quantity: {product['quantity']}")
+    else:
+        print("No low stock items.\n")
+
+# Main menu
+def menu():
+    print("\nInventory Management System")
+    print("1. Add Product")
+    print("2. Update Product")
+    print("3. Delete Product")
+    print("4. Display Inventory")
+    print("5. Check Low Stock")
+    print("6. Logout")
+    choice = input("Enter your choice: ")
+    return choice
+
+# Main program execution
+if authenticate():
+    while True:
+        choice = menu()
+        if choice == "1":
+            add_product()
+        elif choice == "2":
+            update_product()
+        elif choice == "3":
+            delete_product()
+        elif choice == "4":
+            display_inventory()
+        elif choice == "5":
+            low_stock_alert()
+        elif choice == "6":
+            print("Logging out. Goodbye!")
+            break
+        else:
+            print("Invalid choice. Please try again.\n")
